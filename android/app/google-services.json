@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286092960310",
+    "project_id": "notification-supabase",
+    "storage_bucket": "notification-supabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286092960310:android:8771aa721e137502082e97",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEMy73H6DFYJqReq7vQt8pEYeT6YN_WmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
