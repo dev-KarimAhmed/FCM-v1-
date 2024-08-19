@@ -71,19 +71,18 @@ class _OrdersListState extends State<OrdersList> {
 
     final position = _scrollController.position;
     final isAtBottom = position.atEdge && position.pixels != 0;
-    final isNearBottom = position.pixels >= position.maxScrollExtent * 0.7;
+    final isNearBottom = position.pixels >= position.maxScrollExtent * 0.6;
 
     if (isAtBottom || isNearBottom) {
       isLoading = true;
-
       _start = _end + 1; // Update _start to fetch new data
-      _end += 10;
+      _end += 20;
 // Increase the end range for the next fetch
-
       log("@Start-$_start");
       log("@End-$_end");
 
       await context.read<AuthCubit>().getData(start: _start, end: _end);
+
       isLoading = false;
     }
   }
