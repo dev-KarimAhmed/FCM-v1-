@@ -49,7 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(GetDataPaginationLoading());
     }
     try {
-      var data = await apiServices.getData('orders', '', start, end);
+      var data = await apiServices.getData('orders', '');
       for (var order in data.data) {
         orders.add(Order.fromJson(order));
         orders = orders.toSet().toList();

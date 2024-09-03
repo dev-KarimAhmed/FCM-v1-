@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/core/utils/service_locator.dart';
 import 'package:test/features/cache/data/models/product_model.dart';
 import 'package:test/features/cache/data/repos/impl_product_repo.dart';
+import 'package:test/features/cache/domain/entities/product_entity.dart';
 import 'package:test/features/cache/presentation/manger/cubit/product_cubit.dart';
 
 class CacheData extends StatelessWidget {
@@ -40,56 +41,56 @@ class ProductsGrid extends StatefulWidget {
     super.key,
     required this.products,
   });
-  final List<ProductModel> products;
+  final List<ProductEntity> products;
 
   @override
   State<ProductsGrid> createState() => _ProductsGridState();
 }
 
 class _ProductsGridState extends State<ProductsGrid> {
-   late ScrollController _scrollController;
-  int _start = 0;
-  int _end = 29;
-  bool isLoading = false;
+//    late ScrollController _scrollController;
+//   int _start = 0;
+//   int _end = 29;
+//   bool isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(_onScroll);
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _scrollController = ScrollController();
+//     _scrollController.addListener(_onScroll);
+//   }
 
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _scrollController.removeListener(_onScroll);
+//     _scrollController.dispose();
+//     super.dispose();
+//   }
 
-  void _onScroll() async {
-    if (isLoading) return;
+//   void _onScroll() async {
+//     if (isLoading) return;
 
-    final position = _scrollController.position;
-    final isAtBottom = position.atEdge && position.pixels != 0;
-    final isNearBottom = position.pixels >= position.maxScrollExtent * 0.6;
+//     final position = _scrollController.position;
+//     final isAtBottom = position.atEdge && position.pixels != 0;
+//     final isNearBottom = position.pixels >= position.maxScrollExtent * 0.6;
 
-    if (isAtBottom || isNearBottom) {
-      isLoading = true;
-      _start = _end + 1; // Update _start to fetch new data
-      _end += 20;
-// Increase the end range for the next fetch
-      log("@Start-$_start");
-      log("@End-$_end");
+//     if (isAtBottom || isNearBottom) {
+//       isLoading = true;
+//       _start = _end + 1; // Update _start to fetch new data
+//       _end += 20;
+// // Increase the end range for the next fetch
+//       log("@Start-$_start");
+//       log("@End-$_end");
 
-      await context.read<ProductCubit>().getProducts(start: _start, end: _end);
+//       await context.read<ProductCubit>().getProducts(start: _start, end: _end);
 
-      isLoading = false;
-    }
-  }
+//       isLoading = false;
+//     }
+//   }
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      controller: _scrollController,
+      // controller: _scrollController,
       itemCount: widget.products.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -105,7 +106,7 @@ class _ProductsGridState extends State<ProductsGrid> {
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
 
-  final ProductModel product;
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {

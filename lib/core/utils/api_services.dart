@@ -8,11 +8,11 @@ class ApiServices {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNobWJ0c3RsY293c2VhdW54ZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzM4NDMsImV4cCI6MjAzNzY0OTg0M30.rTO1Hw3zmrSYxBbgM1up_yms08PmibF_rTMCC02TNfE';
   ApiServices(this.dio);
 
-  Future<Response> getData(String endpoint, String filter ,int start,  int end) async {
+  Future<Response> getData(String endpoint, String filter ) async {
     return await dio.get(_baseUrl + endpoint + filter,
         options: Options(headers: {
           'apikey': apiKey,
-          'Range' : "$start-$end"
+          // 'Range' : "$start-$end"
         }));
   }
 
